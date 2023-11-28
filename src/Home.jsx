@@ -35,7 +35,7 @@ function Home() {
                                 <td>
                                 {/* btn btn-sm btn-danger*/}
                                 
-                                    <Link to={`/read/${student.id}`} className='btn btn-sm btn-info' >Read</Link>
+                                    <Link to={`/read/${student.ID}`} className='btn btn-sm btn-info' >Read</Link>
                                     <button className='btn btn-sm btn-primary mx-2'>Edit</button>
                                     <button className='btn btn-sm btn-danger'>Delete</button>
                                 </td>
