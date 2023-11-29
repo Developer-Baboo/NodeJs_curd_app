@@ -1,16 +1,25 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+
+// React functional component named 'Update'
 function Update() {
+  // Extracting 'id' from the route parameters
   const { id } = useParams();
+  // React hook for navigating to different routes
+  const navigate = useNavigate();
+  // React state hook to manage the 'student' object
   const [student, setStudent] = useState({});
+
+// React state hook to manage form input values
   const [values, setValues] = useState({
     name: '',
     email: '',
   });
 
+  // useEffect hook to fetch student data from the server when the component mounts
   useEffect(() => {
     axios.get(`http://localhost:8081/read/${id}`)
       .then(res => {
@@ -20,6 +29,7 @@ function Update() {
       .catch(err => console.log(err));
   }, [id]);
 
+  // useEffect hook to update form input values when 'student' changes
   useEffect(() => {
     // Update values when student changes
     setValues({
@@ -28,15 +38,22 @@ function Update() {
     });
   }, [student]);
 
+   // Event handler for input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
 
+  // Event handler for form submission
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // TODO: Implement logic to update student data using axios or another method
-    console.log('Form submitted with values:', values);
+    // Sending a PUT request to update student data
+    axios.put('http://localhost:8081/update/' + id, values)
+    .then(res => {
+      console.log(res)
+       // Navigating back to the home page after successful update
+      navigate('/')
+    }).catch(err => console.log(err));
   };
 
   return (

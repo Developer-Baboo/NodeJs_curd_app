@@ -3,10 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+// React functional component named 'Read'
 function Read() {
+
+     // Extracting 'id' from the route parameters
     const { id } = useParams();
+
+    // React state hook to manage the 'student' array
     const [student, setStudent] = useState([]);
 
+     // useEffect hook to fetch student data from the server when the component mounts or 'id' changes
     useEffect(() => {
         axios.get(`http://localhost:8081/read/${id}`)
             .then(res => {
