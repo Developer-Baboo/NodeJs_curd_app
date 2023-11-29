@@ -1,5 +1,3 @@
-/* https://www.youtube.com/watch?v=y5NvOade3sk
-36:41 */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
@@ -31,7 +29,8 @@ function Read() {
                     <p>Loading...</p>
                 )}
                 <Link to="/" className="btn btn-primary me-2">Back</Link>
-                <button className="btn btn-info">Edit</button>
+                <Link to = {`/edit/${student[0]?.ID}`} className="btn btn-primary me-2">Edit</Link>
+                {/* <button className="btn btn-info">Edit</button> */}
             </div>
         </div>
     );
